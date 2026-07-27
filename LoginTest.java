@@ -1,31 +1,40 @@
 package com.practice;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class LoginTest {
 
     @Test
-    public void testHomePageTitle() throws InterruptedException {
-        System.setProperty("webdriver.edge.driver", "C:/msedgedriver.exe");
+    public void testHomePageTitle() {
 
-        EdgeOptions options = new EdgeOptions();
+        // Automatically downloads and configures the correct ChromeDriver
+        WebDriverManager.chromedriver().setup();
+
+        ChromeOptions options = new ChromeOptions();
+
+        // Run Chrome in headless mode (recommended for Jenkins)
         options.addArguments("--headless=new");
         options.addArguments("--disable-gpu");
-        options.addArguments("--no-sandbox");
         options.addArguments("--window-size=1920,1080");
+        options.addArguments("--remote-allow-origins=*");
 
-        WebDriver driver = new EdgeDriver(options);
+        WebDriver driver = new ChromeDriver(options);
 
         try {
             driver.get("https://automationexercise.com");
-            Thread.sleep(2000);
 
-            String title = driver.getTitle();
-            assertEquals("Automation Exercise", title);
+            String actualTitle = driver.getTitle();
+            System.out.println("Page Title: " + actualTitle);
+
+            assertEquals("Automation Exercise", actualTitle);
+
         } finally {
             driver.quit();
         }
