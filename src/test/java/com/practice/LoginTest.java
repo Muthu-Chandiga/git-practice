@@ -1,7 +1,7 @@
 package com.practice;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -9,8 +9,8 @@ public class LoginTest {
 
     @Test
     public void testHomePageTitle() {
-        System.setProperty("webdriver.chrome.driver", "PATH_TO_CHROMEDRIVER");
-        WebDriver driver = new ChromeDriver();
+        System.setProperty("webdriver.edge.driver", "C:/Selenium/msedgedriver.exe");
+        WebDriver driver = new EdgeDriver();
 
         driver.get("https://automationexercise.com");
         String title = driver.getTitle();
