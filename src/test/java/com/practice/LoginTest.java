@@ -10,7 +10,7 @@ public class LoginTest {
 
     @Test
     public void testHomePageTitle() throws InterruptedException {
-        System.setProperty("webdriver.edge.driver", "C:/msedgedriver.exe");
+System.setProperty("webdriver.edge.driver", "C:/Selenium/msedgedriver.exe");
 
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--headless=new");
