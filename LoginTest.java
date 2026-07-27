@@ -13,15 +13,16 @@ public class LoginTest {
         System.setProperty("webdriver.edge.driver", "C:/msedgedriver.exe");
 
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("--no-first-run");
-        options.addArguments("--disable-features=msEdgeFirstRunExperience");
-        options.addArguments("--inprivate");
+        options.addArguments("--headless=new");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--window-size=1920,1080");
 
         WebDriver driver = new EdgeDriver(options);
 
         try {
             driver.get("https://automationexercise.com");
-            Thread.sleep(2000); // give the page a moment to fully load
+            Thread.sleep(2000);
 
             String title = driver.getTitle();
             assertEquals("Automation Exercise", title);
